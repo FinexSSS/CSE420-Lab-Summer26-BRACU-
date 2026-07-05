@@ -1,5 +1,10 @@
 export const parserCode = [
   {
+    "isSectionHeader": true,
+    "title": "Section 1: C Declarations",
+    "desc": "Standard C includes and variable setups."
+  },
+  {
     "line": "%{",
     "id": "parse-default",
     "highlight": true
@@ -110,6 +115,11 @@ export const parserCode = [
     "highlight": true
   },
   {
+    "isSectionHeader": true,
+    "title": "Section 2: Bison Declarations",
+    "desc": "Defining tokens, types, and operator precedence."
+  },
+  {
     "line": "",
     "id": null,
     "highlight": false
@@ -163,6 +173,11 @@ export const parserCode = [
     "line": "%%",
     "id": "parse-default",
     "highlight": true
+  },
+  {
+    "isSectionHeader": true,
+    "title": "Section 3: Grammar Rules",
+    "desc": "The core CFG rules and their C actions."
   },
   {
     "line": "",
@@ -2558,6 +2573,11 @@ export const parserCode = [
     "line": "%%",
     "id": "parse-default",
     "highlight": true
+  },
+  {
+    "isSectionHeader": true,
+    "title": "Section 4: User Subroutines",
+    "desc": "The main() and yyerror() functions."
   },
   {
     "line": "",

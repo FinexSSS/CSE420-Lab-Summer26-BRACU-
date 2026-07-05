@@ -15,19 +15,29 @@ export default function ParserTab() {
       
       <div className="split-view">
         <div className="code-panel">
-          {parserCode.map((item, index) => (
-            <div 
-              key={index} 
-              className={`code-line ${item.highlight ? 'interactive-code' : ''} ${activeId && activeId === item.id ? 'active' : ''}`}
-              onClick={() => {
-                  if(item.highlight && item.id && parserExplanations[item.id]) {
-                      setActiveId(item.id);
-                  }
-              }}
-            >
-              {item.line || ' '}
-            </div>
-          ))}
+          {parserCode.map((item, index) => {
+            if (item.isSectionHeader) {
+              return (
+                <div key={index} style={{ marginTop: '30px', marginBottom: '10px', padding: '15px', background: 'rgba(59, 130, 246, 0.1)', borderLeft: '4px solid var(--accent)', borderRadius: '4px' }}>
+                  <h3 style={{ color: 'var(--accent)', margin: '0 0 5px 0' }}>{item.title}</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>{item.desc}</p>
+                </div>
+              );
+            }
+            return (
+              <div 
+                key={index} 
+                className={`code-line ${item.highlight ? 'interactive-code' : ''} ${activeId && activeId === item.id ? 'active' : ''}`}
+                onClick={() => {
+                    if(item.highlight && item.id && parserExplanations[item.id]) {
+                        setActiveId(prev => prev === item.id ? null : item.id);
+                    }
+                }}
+              >
+                {item.line || ' '}
+              </div>
+            );
+          })}
         </div>
         
         <div className="explanation-panel">

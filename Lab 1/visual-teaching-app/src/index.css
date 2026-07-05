@@ -479,3 +479,74 @@ body {
   line-height: 1.6;
   color: var(--text-main);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  
+  .logo {
+    display: none; /* Hide logo on mobile to save space */
+  }
+  
+  .nav-menu {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .nav-item {
+    padding: 8px 12px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .nav-item.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--accent);
+  }
+  
+  .student-info {
+    display: none;
+  }
+
+  .split-view {
+    flex-direction: column;
+  }
+  
+  .explanation-panel {
+    width: 100%;
+    height: 35vh; /* Fix it to bottom 35% of screen */
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 15px;
+  }
+  
+  .code-panel {
+    height: 65vh;
+  }
+  
+  .header {
+    padding: 15px 20px;
+  }
+  
+  .walkthrough-container {
+    flex-direction: column;
+  }
+  
+  .walk-queue, .walk-stack {
+    width: 100%;
+    min-height: 200px;
+  }
+}

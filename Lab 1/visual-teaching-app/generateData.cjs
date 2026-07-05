@@ -6,6 +6,9 @@ function generateLexerData() {
     const lines = lexerContent.split('\n');
     const data = [];
     
+    let sectionCount = 0;
+    data.push({ isSectionHeader: true, title: "Section 1: C Declarations", desc: "Standard C includes and variable setups." });
+
     for (let line of lines) {
         line = line.replace('\r', '');
         let id = null;
@@ -27,6 +30,22 @@ function generateLexerData() {
         else if (line.match(/^"{"|"}"|"\("|"\)"|";"|","/)) { id = 'lex-punctuation'; highlight = true; }
         else { id = 'lex-default'; highlight = true; }
 
+        if (line.trim() === '%}') {
+            data.push({ line, id, highlight });
+            data.push({ isSectionHeader: true, title: "Section 2: Flex Definitions", desc: "Defining regex variables like digits and whitespace." });
+            continue;
+        }
+        if (line.trim() === '%%') {
+            data.push({ line, id, highlight });
+            sectionCount++;
+            if (sectionCount === 1) {
+                data.push({ isSectionHeader: true, title: "Section 3: Translation Rules", desc: "The core regex patterns and their C actions." });
+            } else if (sectionCount === 2) {
+                data.push({ isSectionHeader: true, title: "Section 4: User Subroutines", desc: "Helper functions (none needed in this file)." });
+            }
+            continue;
+        }
+
         data.push({ line, id, highlight });
     }
 
@@ -37,6 +56,9 @@ function generateParserData() {
     const parserContent = fs.readFileSync(path.join(__dirname, '../22101619/22101619.y'), 'utf8');
     const lines = parserContent.split('\n');
     const data = [];
+
+    let sectionCount = 0;
+    data.push({ isSectionHeader: true, title: "Section 1: C Declarations", desc: "Standard C includes and variable setups." });
 
     for (let line of lines) {
         line = line.replace('\r', '');
@@ -56,6 +78,22 @@ function generateParserData() {
         else if (line.includes('$$ = new symbol_info')) { id = 'parse-reduction'; highlight = true; }
         else { id = 'parse-default'; highlight = true; }
         
+        if (line.trim() === '%}') {
+            data.push({ line, id, highlight });
+            data.push({ isSectionHeader: true, title: "Section 2: Bison Declarations", desc: "Defining tokens, types, and operator precedence." });
+            continue;
+        }
+        if (line.trim() === '%%') {
+            data.push({ line, id, highlight });
+            sectionCount++;
+            if (sectionCount === 1) {
+                data.push({ isSectionHeader: true, title: "Section 3: Grammar Rules", desc: "The core CFG rules and their C actions." });
+            } else if (sectionCount === 2) {
+                data.push({ isSectionHeader: true, title: "Section 4: User Subroutines", desc: "The main() and yyerror() functions." });
+            }
+            continue;
+        }
+
         data.push({ line, id, highlight });
     }
 

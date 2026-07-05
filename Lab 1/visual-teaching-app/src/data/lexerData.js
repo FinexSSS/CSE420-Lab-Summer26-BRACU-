@@ -1,5 +1,10 @@
 export const lexerCode = [
   {
+    "isSectionHeader": true,
+    "title": "Section 1: C Declarations",
+    "desc": "Standard C includes and variable setups."
+  },
+  {
     "line": "%option noyywrap",
     "id": "lex-option",
     "highlight": true
@@ -125,6 +130,11 @@ export const lexerCode = [
     "highlight": true
   },
   {
+    "isSectionHeader": true,
+    "title": "Section 2: Flex Definitions",
+    "desc": "Defining regex variables like digits and whitespace."
+  },
+  {
     "line": "",
     "id": null,
     "highlight": false
@@ -223,6 +233,11 @@ export const lexerCode = [
     "line": "%%",
     "id": "lex-default",
     "highlight": true
+  },
+  {
+    "isSectionHeader": true,
+    "title": "Section 3: Translation Rules",
+    "desc": "The core regex patterns and their C actions."
   },
   {
     "line": "",
@@ -1363,6 +1378,11 @@ export const lexerCode = [
     "line": "%%",
     "id": "lex-default",
     "highlight": true
+  },
+  {
+    "isSectionHeader": true,
+    "title": "Section 4: User Subroutines",
+    "desc": "Helper functions (none needed in this file)."
   },
   {
     "line": "",
