@@ -85,12 +85,16 @@ const AstNode = ({ node, hoverLines, setHoverLines }) => {
 
 export default function AstTreeTab() {
   const [hoverLines, setHoverLines] = useState([]);
+  const [lockedLines, setLockedLines] = useState([]);
+
+  // Combine hovered and locked lines for highlighting
+  const activeLines = [...new Set([...hoverLines, ...lockedLines])];
 
   return (
     <div className="tab-pane active" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       <div className="header" style={{ flexShrink: 0 }}>
         <h1>Interactive Syntax Tree</h1>
-        <p>Click nodes to expand the AST. Hover over nodes to see exactly which code they generated from!</p>
+        <p>Click nodes to expand the AST. Hover over or <strong>click code lines</strong> to highlight and lock their corresponding nodes in the tree!</p>
       </div>
       
       <div className="split-view" style={{ flex: 1, padding: '20px', gap: '20px', overflow: 'hidden', background: '#0b1120' }}>
@@ -123,9 +127,9 @@ export default function AstTreeTab() {
                         display: 'inline-block',
                         fontWeight: 'bold',
                         fontSize: '1.2rem',
-                        boxShadow: hoverLines.some(line => (astData.highlightLines || []).includes(line)) ? '0 0 20px rgba(255, 255, 255, 0.6)' : '0 4px 15px rgba(16,185,129,0.3)',
+                        boxShadow: activeLines.some(line => (astData.highlightLines || []).includes(line)) ? '0 0 20px rgba(255, 255, 255, 0.6)' : '0 4px 15px rgba(16,185,129,0.3)',
                         border: '2px solid #34d399',
-                        transform: hoverLines.some(line => (astData.highlightLines || []).includes(line)) ? 'scale(1.02)' : 'none',
+                        transform: activeLines.some(line => (astData.highlightLines || []).includes(line)) ? 'scale(1.02)' : 'none',
                         zIndex: 1,
                         position: 'relative',
                         transition: 'all 0.2s'
@@ -138,7 +142,7 @@ export default function AstTreeTab() {
                 
                 <div style={{ marginTop: '10px' }}>
                     {astData.children.map(child => (
-                        <AstNode key={child.id} node={child} hoverLines={hoverLines} setHoverLines={setHoverLines} />
+                        <AstNode key={child.id} node={child} hoverLines={activeLines} setHoverLines={setHoverLines} />
                     ))}
                 </div>
              </div>
@@ -151,24 +155,32 @@ export default function AstTreeTab() {
           <div style={{ flex: 1, background: '#1e293b', padding: '20px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '1.2rem', lineHeight: '1.8', overflowY: 'auto' }}>
             {inputCode.map((item, index) => {
               const lineNum = index + 1;
-              const isHovered = hoverLines.includes(lineNum);
+              const isHovered = activeLines.includes(lineNum);
+              const isLocked = lockedLines.includes(lineNum);
               // Calculate basic indentation just visually based on tabs
               const indentLevel = (item.line.match(/\t/g) || []).length;
               return (
                 <div 
                   key={lineNum}
+                  onClick={() => {
+                    if (isLocked) {
+                      setLockedLines(lockedLines.filter(l => l !== lineNum));
+                    } else {
+                      setLockedLines([...lockedLines, lineNum]);
+                    }
+                  }}
                   onMouseEnter={() => setHoverLines([lineNum])}
                   onMouseLeave={() => setHoverLines([])}
                   style={{
                     paddingLeft: `${indentLevel * 30}px`,
-                    background: isHovered ? 'rgba(59, 130, 246, 0.3)' : 'transparent',
-                    color: isHovered ? '#60a5fa' : '#e2e8f0',
-                    borderLeft: isHovered ? '4px solid #3b82f6' : '4px solid transparent',
+                    background: isLocked ? 'rgba(16, 185, 129, 0.3)' : (isHovered ? 'rgba(59, 130, 246, 0.3)' : 'transparent'),
+                    color: isLocked ? '#34d399' : (isHovered ? '#60a5fa' : '#e2e8f0'),
+                    borderLeft: isLocked ? '4px solid #10b981' : (isHovered ? '4px solid #3b82f6' : '4px solid transparent'),
                     transition: 'all 0.2s',
                     padding: '2px 10px',
                     borderRadius: '4px',
-                    cursor: 'crosshair',
-                    textShadow: isHovered ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none'
+                    cursor: 'pointer',
+                    textShadow: isLocked ? '0 0 10px rgba(16, 185, 129, 0.5)' : (isHovered ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none')
                   }}
                 >
                   {item.line || '\u00A0'}
@@ -177,7 +189,7 @@ export default function AstTreeTab() {
             })}
           </div>
           <div style={{ marginTop: '20px', color: 'var(--text-muted)', fontSize: '0.9rem', fontStyle: 'italic' }}>
-            Hover over any blue or orange node in the tree on the left to see the exact C code it represents! (Highlighting specifically focuses on the var function on lines 5-8)
+            Hover over any blue or orange node in the tree on the left to see the exact C code it represents! (Click a line of code to <strong>lock</strong> its highlighting)
           </div>
         </div>
 
