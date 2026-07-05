@@ -1,28 +1,31 @@
 import { 
-    Code2, 
     FileText, 
-    GitBranch, 
+    Code2, 
     PlayCircle, 
     Cpu, 
     GraduationCap,
-    BookOpen
+    BookOpen,
+    Terminal
   } from 'lucide-react';
   
   export default function Sidebar({ activeTab, setActiveTab }) {
     const navItems = [
       { id: 'theory', label: 'Theory & Basics', icon: BookOpen },
-      { id: 'lexer', label: 'Lexer (.l)', icon: FileText },
-      { id: 'parser', label: 'Parser (.y)', icon: GitBranch },
-      { id: 'walkthrough', label: 'Stack Walkthrough', icon: PlayCircle },
-      { id: 'pipeline', label: 'Pipeline', icon: Cpu },
-      { id: 'viva', label: 'Viva Flashcards', icon: GraduationCap },
+      { id: 'lexer', label: 'Lexer (lexer.l)', icon: Code2 },
+      { id: 'parser', label: 'Parser (parser.y)', icon: Code2 },
+      { id: 'input', label: 'Input Code (input.txt)', icon: FileText },
+      { id: 'script', label: 'Runner (script.sh)', icon: Terminal },
+      { id: 'header', label: 'Header (symbol_info.h)', icon: Cpu },
+      { id: 'pipeline', label: 'How To Compile', icon: Terminal },
+      { id: 'walkthrough', label: 'Stack Animation', icon: PlayCircle },
+      { id: 'flashcards', label: 'Viva Flashcards', icon: GraduationCap }
     ];
   
     return (
       <aside className="sidebar">
         <div className="logo">
-          <Code2 size={24} />
-          <span>Compiler Lab</span>
+          <GraduationCap size={28} />
+          Ultimate Guide
         </div>
         
         <nav className="nav-menu">
@@ -42,4 +45,3 @@ import {
       </aside>
     );
   }
-  

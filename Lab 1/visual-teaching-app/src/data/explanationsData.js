@@ -108,3 +108,11 @@ export const lexerExplanations = {
       text: "yyparse() starts the parsing engine. It repeatedly calls yylex() to get tokens and matches them against the grammar rules. yyin is set to the input file, and ios::trunc clears the old log file."
     }
   };
+
+  export const genericExplanations = {
+    "generic-default": {
+      badge: 'Helper File',
+      title: "Supporting Code",
+      text: "This is a supporting file for your compiler. Whether it's input code, header files, or bash scripts, these pieces glue everything together."
+    }
+  };

@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 function generateLexerData() {
-    const lexerContent = fs.readFileSync(path.join(__dirname, '../intermediate/22101619/22101619.l'), 'utf8');
+    const lexerContent = fs.readFileSync(path.join(__dirname, '../22101619/22101619.l'), 'utf8');
     const lines = lexerContent.split('\n');
     const data = [];
     
-    for(let i=0; i<lines.length; i++) {
-        let line = lines[i].replace(/\r/g, '');
+    for (let line of lines) {
+        line = line.replace('\r', '');
         let id = null;
         let highlight = false;
 
@@ -30,17 +30,16 @@ function generateLexerData() {
         data.push({ line, id, highlight });
     }
 
-    const output = `export const lexerCode = ${JSON.stringify(data, null, 2)};\n`;
-    fs.writeFileSync(path.join(__dirname, 'src/data/lexerData.js'), output);
+    fs.writeFileSync(path.join(__dirname, 'src/data/lexerData.js'), `export const lexerCode = ${JSON.stringify(data, null, 2)};`);
 }
 
 function generateParserData() {
-    const parserContent = fs.readFileSync(path.join(__dirname, '../intermediate/22101619/22101619.y'), 'utf8');
+    const parserContent = fs.readFileSync(path.join(__dirname, '../22101619/22101619.y'), 'utf8');
     const lines = parserContent.split('\n');
     const data = [];
 
-    for(let i=0; i<lines.length; i++) {
-        let line = lines[i].replace(/\r/g, '');
+    for (let line of lines) {
+        line = line.replace('\r', '');
         let id = null;
         let highlight = false;
 
@@ -60,15 +59,19 @@ function generateParserData() {
         data.push({ line, id, highlight });
     }
 
-    const output = `export const parserCode = ${JSON.stringify(data, null, 2)};\n`;
-    fs.writeFileSync(path.join(__dirname, 'src/data/parserData.js'), output);
+    fs.writeFileSync(path.join(__dirname, 'src/data/parserData.js'), `export const parserCode = ${JSON.stringify(data, null, 2)};`);
 }
 
-// Make sure directory exists
-if (!fs.existsSync(path.join(__dirname, 'src/data'))) {
-    fs.mkdirSync(path.join(__dirname, 'src/data'));
+function generateSimpleData(filename, exportName, outputFile) {
+    const content = fs.readFileSync(path.join(__dirname, '../22101619/', filename), 'utf8');
+    const lines = content.split('\n');
+    const data = lines.map(line => ({ line: line.replace('\r', ''), id: 'generic-default', highlight: line.trim() !== '' }));
+    fs.writeFileSync(path.join(__dirname, 'src/data/', outputFile), `export const ${exportName} = ${JSON.stringify(data, null, 2)};`);
 }
 
 generateLexerData();
 generateParserData();
-console.log('Generated lexerData.js and parserData.js successfully.');
+generateSimpleData('input.txt', 'inputCode', 'inputData.js');
+generateSimpleData('script.sh', 'scriptCode', 'scriptData.js');
+generateSimpleData('symbol_info.h', 'symbolCode', 'symbolData.js');
+console.log('Generated all data files successfully.');
