@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Hand } from 'lucide-react';
+import { Hand, ChevronUp, ChevronDown } from 'lucide-react';
 import { parserCode } from '../data/parserData';
 import { parserExplanations } from '../data/explanationsData';
 
 export default function ParserTab() {
   const [activeId, setActiveId] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="tab-pane active">
@@ -40,17 +41,27 @@ export default function ParserTab() {
           })}
         </div>
         
-        <div className="explanation-panel">
+        <div className={`explanation-panel ${isExpanded ? 'expanded' : ''}`}>
+          <div 
+            style={{ display: 'none' }} 
+            className="mobile-drawer-handle" 
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <div style={{ width: '60px', height: '6px', background: 'var(--border)', borderRadius: '6px', margin: '0 auto 15px' }} />
+            <div style={{ display: 'flex', justifyContent: 'center', color: 'var(--text-muted)' }}>
+              {isExpanded ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
+            </div>
+          </div>
           {!activeId ? (
             <div className="default-msg">
               <Hand size={48} />
-              <h3>Select Code</h3>
+              <h3 onClick={() => setIsExpanded(!isExpanded)} style={{ cursor: 'pointer' }}>Select Code</h3>
               <p>Almost every line of your actual code is clickable. Click around to learn what everything does!</p>
             </div>
           ) : (
             <div className="explain-card">
-              <span className="badge">{parserExplanations[activeId].badge}</span>
-              <h3>{parserExplanations[activeId].title}</h3>
+              <span className="badge" onClick={() => setIsExpanded(!isExpanded)} style={{ cursor: 'pointer' }}>{parserExplanations[activeId].badge}</span>
+              <h3 onClick={() => setIsExpanded(!isExpanded)} style={{ cursor: 'pointer' }}>{parserExplanations[activeId].title}</h3>
               <p>{parserExplanations[activeId].text}</p>
             </div>
           )}

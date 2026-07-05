@@ -567,15 +567,40 @@ body {
   }
   
   .explanation-panel {
-    width: 100%;
-    height: 35vh; /* Fix it to bottom 35% of screen */
-    border-left: none;
-    border-top: 1px solid var(--border);
-    padding: 15px;
+    flex: none !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    height: 35vh !important;
+    width: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 50 !important;
+    border-radius: 20px 20px 0 0 !important;
+    border: none !important;
+    border-top: 2px solid var(--accent) !important;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.6) !important;
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: var(--panel-bg) !important;
+    padding: 15px !important;
+  }
+  
+  .explanation-panel.expanded {
+    height: 85vh !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    border-radius: 20px 20px 0 0 !important;
   }
   
   .code-panel {
-    height: 65vh;
+    flex: none !important;
+    height: auto !important;
+    min-height: 55vh !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    padding-bottom: 50vh !important;
   }
   
   .header {
