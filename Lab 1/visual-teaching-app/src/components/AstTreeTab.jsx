@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Network } from 'lucide-react';
-import { rawCodeLines, astData } from '../data/astData';
+import { inputCode } from '../data/inputData';
+import { astData } from '../data/astData';
 
 const AstNode = ({ node, setHoverLines }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,30 +141,34 @@ export default function AstTreeTab() {
         {/* Code Panel */}
         <div style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
           <h2 style={{ color: '#f59e0b', marginBottom: '20px' }}>Raw Source Code</h2>
-          <div style={{ flex: 1, background: '#1e293b', padding: '20px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '1.2rem', lineHeight: '1.8' }}>
-            {rawCodeLines.map(line => {
-              const isHovered = hoverLines.includes(line.num);
+          <div style={{ flex: 1, background: '#1e293b', padding: '20px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '1.2rem', lineHeight: '1.8', overflowY: 'auto' }}>
+            {inputCode.map((item, index) => {
+              const lineNum = index + 1;
+              const isHovered = hoverLines.includes(lineNum);
+              // Calculate basic indentation just visually based on tabs
+              const indentLevel = (item.line.match(/\t/g) || []).length;
               return (
                 <div 
-                  key={line.num} 
+                  key={lineNum} 
                   style={{
-                    paddingLeft: `${line.indent * 30}px`,
+                    paddingLeft: `${indentLevel * 30}px`,
                     background: isHovered ? 'rgba(59, 130, 246, 0.3)' : 'transparent',
-                    color: isHovered ? '#60a5fa' : '#e2e8f0',
+                    color: isHovered ? '#60a5fa' : (item.line.includes('var(') || hoverLines.includes(lineNum) === false && lineNum >= 5 && lineNum <= 8) ? '#94a3b8' : '#64748b',
                     borderLeft: isHovered ? '4px solid #3b82f6' : '4px solid transparent',
                     transition: 'all 0.2s',
                     padding: '2px 10px',
                     borderRadius: '4px',
-                    textShadow: isHovered ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none'
+                    textShadow: isHovered ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none',
+                    opacity: (lineNum >= 5 && lineNum <= 8) || isHovered ? 1 : 0.5
                   }}
                 >
-                  {line.code}
+                  {item.line || '\u00A0'}
                 </div>
               )
             })}
           </div>
           <div style={{ marginTop: '20px', color: 'var(--text-muted)', fontSize: '0.9rem', fontStyle: 'italic' }}>
-            Hover over any blue or orange node in the tree on the left to see the exact C code it represents!
+            Hover over any blue or orange node in the tree on the left to see the exact C code it represents! (Highlighting specifically focuses on the var function on lines 5-8)
           </div>
         </div>
 
