@@ -5,7 +5,8 @@ import {
     Cpu, 
     GraduationCap,
     BookOpen,
-    Terminal
+    Terminal,
+    Network
   } from 'lucide-react';
   
   export default function Sidebar({ activeTab, setActiveTab }) {
@@ -18,6 +19,7 @@ import {
       { id: 'header', label: 'Header (symbol_info.h)', icon: Cpu },
       { id: 'pipeline', label: 'How To Compile', icon: Terminal },
       { id: 'walkthrough', label: 'Stack Animation', icon: PlayCircle },
+      { id: 'ast', label: 'Syntax Tree Explorer', icon: Network },
       { id: 'flashcards', label: 'Viva Flashcards', icon: GraduationCap }
     ];
   

@@ -7,6 +7,7 @@ import GenericCodeTab from './components/GenericCodeTab';
 import WalkthroughTab from './components/WalkthroughTab';
 import PipelineTab from './components/PipelineTab';
 import FlashcardsTab from './components/FlashcardsTab';
+import AstTreeTab from './components/AstTreeTab';
 import './App.css';
 
 import { inputCode } from './data/inputData';
@@ -47,6 +48,7 @@ function App() {
         )}
         {activeTab === 'walkthrough' && <WalkthroughTab />}
         {activeTab === 'pipeline' && <PipelineTab />}
+        {activeTab === 'ast' && <AstTreeTab />}
         {activeTab === 'flashcards' && <FlashcardsTab />}
       </main>
     </div>
