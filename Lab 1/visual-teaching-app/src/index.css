@@ -603,6 +603,13 @@ body {
     padding-bottom: 50vh !important;
   }
   
+  .mobile-drawer-handle { 
+    display: block !important; 
+    cursor: pointer; 
+    padding: 15px 0 10px 0; 
+    margin-top: -10px;
+  }
+  
   .header {
     padding: 15px 20px;
   }

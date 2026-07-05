@@ -177,17 +177,6 @@ export default function InputVisualizerTab() {
             </div>
           </div>
           
-          <style dangerouslySetInnerHTML={{__html: `
-            @media (max-width: 900px) {
-              .mobile-drawer-handle { 
-                display: block !important; 
-                cursor: pointer; 
-                padding: 15px 0 10px 0; 
-                margin-top: -10px; /* Pull it up closer to the edge */
-              }
-            }
-          `}} />
-
           <h2 
             onClick={() => setIsExpanded(!isExpanded)} 
             style={{ color: '#3b82f6', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
