@@ -113,3 +113,11 @@ export const lexerExplanations = {
       text: "Called automatically by Yacc when it encounters a syntax error (tokens that don't match any rule). It prints the line number and error message."
     }
   };
+
+  export const genericExplanations = {
+    "generic-default": {
+      badge: 'Helper File',
+      title: "Supporting Code",
+      text: "This is a supporting file for your compiler. Whether it's input code, header files, or bash scripts, these pieces glue everything together."
+    }
+  };
