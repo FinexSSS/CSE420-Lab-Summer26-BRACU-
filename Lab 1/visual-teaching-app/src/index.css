@@ -524,12 +524,33 @@ body {
   .split-view {
     flex-direction: column;
     overflow-y: auto !important;
+    position: relative;
+    padding: 0 !important; /* Remove padding to allow sticky to touch edges */
+    gap: 0 !important;
   }
   
-  .mobile-panel-top, .mobile-panel-bottom {
+  .mobile-panel-top {
     flex: none !important;
-    min-height: 50vh !important;
+    height: auto !important;
+    min-height: 55vh !important;
     width: 100% !important;
+    overflow-x: auto !important;
+    border-radius: 0 !important;
+    border: none !important;
+    padding-bottom: 50vh !important; /* Buffer so we can scroll past it behind the sticky panel */
+  }
+
+  .mobile-panel-bottom {
+    flex: none !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    height: 45vh !important;
+    width: 100% !important;
+    z-index: 50 !important;
+    border-radius: 20px 20px 0 0 !important;
+    border: none !important;
+    border-top: 2px solid var(--accent) !important;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.6) !important;
   }
   
   .explanation-panel {
