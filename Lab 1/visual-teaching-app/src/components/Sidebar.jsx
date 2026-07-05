@@ -25,9 +25,9 @@ import {
   
     return (
       <aside className="sidebar">
-        <div className="logo">
+        <div className="logo" style={{ fontSize: '1.2rem' }}>
           <GraduationCap size={28} />
-          Ultimate Guide
+          CSE 420 Lab 1 Guide
         </div>
         
         <nav className="nav-menu">
