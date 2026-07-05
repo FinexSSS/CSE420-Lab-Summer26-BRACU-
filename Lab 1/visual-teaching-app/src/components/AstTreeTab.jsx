@@ -100,7 +100,7 @@ export default function AstTreeTab() {
       <div className="split-view" style={{ flex: 1, padding: '20px', gap: '20px', overflow: 'hidden', background: '#0b1120' }}>
         
         {/* Tree Panel */}
-        <div style={{ flex: 1.5, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', overflowY: 'auto', border: '1px solid var(--border)' }}>
+        <div className="mobile-panel-top" style={{ flex: 1.5, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', overflowY: 'auto', border: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
             <Network color="#3b82f6" size={28} />
             <h2 style={{ color: 'white' }}>Abstract Syntax Tree (AST)</h2>
@@ -150,7 +150,7 @@ export default function AstTreeTab() {
         </div>
         
         {/* Code Panel */}
-        <div style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+        <div className="mobile-panel-bottom" style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
           <h2 style={{ color: '#f59e0b', marginBottom: '20px' }}>Raw Source Code</h2>
           <div style={{ flex: 1, background: '#1e293b', padding: '20px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '1.2rem', lineHeight: '1.8', overflowY: 'auto' }}>
             {inputCode.map((item, index) => {

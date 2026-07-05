@@ -523,6 +523,13 @@ body {
 
   .split-view {
     flex-direction: column;
+    overflow-y: auto !important;
+  }
+  
+  .mobile-panel-top, .mobile-panel-bottom {
+    flex: none !important;
+    min-height: 50vh !important;
+    width: 100% !important;
   }
   
   .explanation-panel {

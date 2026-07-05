@@ -127,7 +127,7 @@ export default function InputVisualizerTab() {
       <div className="split-view" style={{ flex: 1, padding: '20px', gap: '20px', overflow: 'hidden', background: '#0b1120' }}>
         
         {/* Code Panel */}
-        <div style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+        <div className="mobile-panel-top" style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
           <h2 style={{ color: '#f59e0b', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
              <Terminal size={24} /> input.txt
           </h2>
@@ -163,7 +163,7 @@ export default function InputVisualizerTab() {
         </div>
 
         {/* Dynamic Visualizer Panel */}
-        <div style={{ flex: 1.2, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', overflowY: 'auto' }}>
+        <div className="mobile-panel-bottom" style={{ flex: 1.2, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', overflowY: 'auto' }}>
           <h2 style={{ color: '#3b82f6', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Eye size={24} /> Live Compiler Simulation
           </h2>
