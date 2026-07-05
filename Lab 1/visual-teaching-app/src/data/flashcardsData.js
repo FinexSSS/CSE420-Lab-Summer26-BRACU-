@@ -48,5 +48,16 @@ export const flashcardsData = [
       { q: "What is the purpose of yyparse()?", a: "It is the entry point of the parser. It repeatedly calls yylex() to consume tokens until EOF or a fatal error." },
       { q: "Why keep track of line_num in the lexer?", a: "Because the parser doesn't look at text lines, just tokens. If there is a syntax error, we need line_num to tell the user where it happened." }
     ]
+  },
+  {
+    category: "Advanced Grammar & Semantics",
+    questions: [
+      { q: "What is %union used for?", a: "By default, yylval is a simple integer. %union allows yylval to hold multiple data types (like integers, floats, strings, or pointers like symbol_info*) depending on the token." },
+      { q: "How do you specify the type of a token when using %union?", a: "Using the %token <type_name> directive. For example, %token <sinfo> ID tells Bison that the ID token uses the 'sinfo' field of the union." },
+      { q: "What does %type <sinfo> expression do?", a: "It tells Bison that the non-terminal rule 'expression' will return a semantic value of type 'sinfo'." },
+      { q: "If we have rule `expression : expression ADDOP term`, what is $$?", a: "It is the semantic value returned by this entire rule. Usually, we do `$$ = new symbol_info(...);` to build the tree upwards." },
+      { q: "Why do we pass arguments to a function as a 'parameter_list'?", a: "Because a parser builds structures recursively from left to right. 'parameter_list : parameter_list COMMA parameter_declaration' correctly handles 1 or 100 arguments." },
+      { q: "What is the purpose of printout(symbol_info* tree)?", a: "It is a recursive traversal function that walks through the Abstract Syntax Tree (AST) node by node and prints it in an XML-like hierarchical format." }
+    ]
   }
 ];

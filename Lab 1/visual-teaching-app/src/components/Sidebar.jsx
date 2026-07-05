@@ -12,12 +12,12 @@ import {
   export default function Sidebar({ activeTab, setActiveTab }) {
     const navItems = [
       { id: 'theory', label: 'Theory & Basics', icon: BookOpen },
+      { id: 'pipeline', label: 'How To Compile', icon: Terminal },
       { id: 'lexer', label: 'Lexer (lexer.l)', icon: Code2 },
       { id: 'parser', label: 'Parser (parser.y)', icon: Code2 },
-      { id: 'input', label: 'Input Code (input.txt)', icon: FileText },
-      { id: 'script', label: 'Runner (script.sh)', icon: Terminal },
       { id: 'header', label: 'Header (symbol_info.h)', icon: Cpu },
-      { id: 'pipeline', label: 'How To Compile', icon: Terminal },
+      { id: 'script', label: 'Runner (script.sh)', icon: Terminal },
+      { id: 'input', label: 'Input Visualizer', icon: FileText },
       { id: 'walkthrough', label: 'Stack Animation', icon: PlayCircle },
       { id: 'ast', label: 'Syntax Tree Explorer', icon: Network },
       { id: 'flashcards', label: 'Viva Flashcards', icon: GraduationCap }
