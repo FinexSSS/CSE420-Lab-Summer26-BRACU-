@@ -171,19 +171,27 @@ export default function InputVisualizerTab() {
             className="mobile-drawer-handle" 
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <div style={{ width: '40px', height: '4px', background: 'var(--border)', borderRadius: '4px', margin: '0 auto 10px' }} />
+            <div style={{ width: '60px', height: '6px', background: 'var(--border)', borderRadius: '6px', margin: '0 auto 15px' }} />
             <div style={{ display: 'flex', justifyContent: 'center', color: 'var(--text-muted)' }}>
-              {isExpanded ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+              {isExpanded ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
             </div>
           </div>
           
           <style dangerouslySetInnerHTML={{__html: `
             @media (max-width: 900px) {
-              .mobile-drawer-handle { display: block !important; cursor: pointer; padding-bottom: 10px; }
+              .mobile-drawer-handle { 
+                display: block !important; 
+                cursor: pointer; 
+                padding: 15px 0 10px 0; 
+                margin-top: -10px; /* Pull it up closer to the edge */
+              }
             }
           `}} />
 
-          <h2 style={{ color: '#3b82f6', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <h2 
+            onClick={() => setIsExpanded(!isExpanded)} 
+            style={{ color: '#3b82f6', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+          >
             <Eye size={24} /> Live Compiler Simulation
           </h2>
           

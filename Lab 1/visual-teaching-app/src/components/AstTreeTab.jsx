@@ -159,19 +159,29 @@ export default function AstTreeTab() {
             className="mobile-drawer-handle" 
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <div style={{ width: '40px', height: '4px', background: 'var(--border)', borderRadius: '4px', margin: '0 auto 10px' }} />
+            <div style={{ width: '60px', height: '6px', background: 'var(--border)', borderRadius: '6px', margin: '0 auto 15px' }} />
             <div style={{ display: 'flex', justifyContent: 'center', color: 'var(--text-muted)' }}>
-              {isExpanded ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+              {isExpanded ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
             </div>
           </div>
           
           <style dangerouslySetInnerHTML={{__html: `
             @media (max-width: 900px) {
-              .mobile-drawer-handle { display: block !important; cursor: pointer; padding-bottom: 10px; }
+              .mobile-drawer-handle { 
+                display: block !important; 
+                cursor: pointer; 
+                padding: 15px 0 10px 0; 
+                margin-top: -10px; /* Pull it up closer to the edge */
+              }
             }
           `}} />
 
-          <h2 style={{ color: '#f59e0b', marginBottom: '20px' }}>Raw Source Code</h2>
+          <h2 
+            onClick={() => setIsExpanded(!isExpanded)}
+            style={{ color: '#f59e0b', marginBottom: '20px', cursor: 'pointer' }}
+          >
+            Raw Source Code
+          </h2>
           <div style={{ flex: 1, background: '#1e293b', padding: '20px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '1.2rem', lineHeight: '1.8', overflowY: 'auto' }}>
             {inputCode.map((item, index) => {
               const lineNum = index + 1;
