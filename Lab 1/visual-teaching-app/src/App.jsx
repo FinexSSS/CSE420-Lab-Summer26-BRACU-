@@ -4,6 +4,7 @@ import TheoryTab from './components/TheoryTab';
 import LexerTab from './components/LexerTab';
 import ParserTab from './components/ParserTab';
 import GenericCodeTab from './components/GenericCodeTab';
+import InputVisualizerTab from './components/InputVisualizerTab';
 import WalkthroughTab from './components/WalkthroughTab';
 import PipelineTab from './components/PipelineTab';
 import FlashcardsTab from './components/FlashcardsTab';
@@ -25,13 +26,7 @@ function App() {
         {activeTab === 'theory' && <TheoryTab />}
         {activeTab === 'lexer' && <LexerTab />}
         {activeTab === 'parser' && <ParserTab />}
-        {activeTab === 'input' && (
-          <GenericCodeTab 
-            title="Input Code (input.txt)" 
-            description="The sample C code that we will pass into our compiled parser to test if it works." 
-            codeData={inputCode} 
-          />
-        )}
+        {activeTab === 'input' && <InputVisualizerTab />}
         {activeTab === 'script' && (
           <GenericCodeTab 
             title="Runner (script.sh)" 
