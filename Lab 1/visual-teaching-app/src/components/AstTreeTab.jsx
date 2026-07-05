@@ -4,9 +4,12 @@ import { Network } from 'lucide-react';
 import { inputCode } from '../data/inputData';
 import { astData } from '../data/astData';
 
-const AstNode = ({ node, setHoverLines }) => {
+const AstNode = ({ node, hoverLines, setHoverLines }) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasChildren = node.children && node.children.length > 0;
+  
+  // Check if any of this node's highlight lines are currently being hovered
+  const isHovered = hoverLines.some(line => (node.highlightLines || []).includes(line));
 
   return (
     <div style={{ marginLeft: '20px', position: 'relative' }}>
@@ -43,12 +46,14 @@ const AstNode = ({ node, setHoverLines }) => {
             borderRadius: '20px',
             cursor: hasChildren ? 'pointer' : 'default',
             fontWeight: 'bold',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+            boxShadow: isHovered ? '0 0 15px rgba(255, 255, 255, 0.5)' : '0 4px 10px rgba(0,0,0,0.2)',
             border: node.isToken ? '2px solid #fbbf24' : '2px solid #60a5fa',
+            transform: isHovered ? 'scale(1.02)' : 'none',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            userSelect: 'none'
+            userSelect: 'none',
+            transition: 'all 0.2s'
           }}
         >
           {node.label}
@@ -69,7 +74,7 @@ const AstNode = ({ node, setHoverLines }) => {
             style={{ overflow: 'hidden' }}
           >
             {node.children.map(child => (
-              <AstNode key={child.id} node={child} setHoverLines={setHoverLines} />
+              <AstNode key={child.id} node={child} hoverLines={hoverLines} setHoverLines={setHoverLines} />
             ))}
           </motion.div>
         )}
@@ -118,10 +123,12 @@ export default function AstTreeTab() {
                         display: 'inline-block',
                         fontWeight: 'bold',
                         fontSize: '1.2rem',
-                        boxShadow: '0 4px 15px rgba(16,185,129,0.3)',
+                        boxShadow: hoverLines.some(line => (astData.highlightLines || []).includes(line)) ? '0 0 20px rgba(255, 255, 255, 0.6)' : '0 4px 15px rgba(16,185,129,0.3)',
                         border: '2px solid #34d399',
+                        transform: hoverLines.some(line => (astData.highlightLines || []).includes(line)) ? 'scale(1.02)' : 'none',
                         zIndex: 1,
-                        position: 'relative'
+                        position: 'relative',
+                        transition: 'all 0.2s'
                     }}
                     onMouseEnter={() => setHoverLines(astData.highlightLines || [])}
                     onMouseLeave={() => setHoverLines([])}
@@ -131,7 +138,7 @@ export default function AstTreeTab() {
                 
                 <div style={{ marginTop: '10px' }}>
                     {astData.children.map(child => (
-                        <AstNode key={child.id} node={child} setHoverLines={setHoverLines} />
+                        <AstNode key={child.id} node={child} hoverLines={hoverLines} setHoverLines={setHoverLines} />
                     ))}
                 </div>
              </div>
@@ -149,17 +156,19 @@ export default function AstTreeTab() {
               const indentLevel = (item.line.match(/\t/g) || []).length;
               return (
                 <div 
-                  key={lineNum} 
+                  key={lineNum}
+                  onMouseEnter={() => setHoverLines([lineNum])}
+                  onMouseLeave={() => setHoverLines([])}
                   style={{
                     paddingLeft: `${indentLevel * 30}px`,
                     background: isHovered ? 'rgba(59, 130, 246, 0.3)' : 'transparent',
-                    color: isHovered ? '#60a5fa' : (item.line.includes('var(') || hoverLines.includes(lineNum) === false && lineNum >= 5 && lineNum <= 8) ? '#94a3b8' : '#64748b',
+                    color: isHovered ? '#60a5fa' : '#e2e8f0',
                     borderLeft: isHovered ? '4px solid #3b82f6' : '4px solid transparent',
                     transition: 'all 0.2s',
                     padding: '2px 10px',
                     borderRadius: '4px',
-                    textShadow: isHovered ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none',
-                    opacity: (lineNum >= 5 && lineNum <= 8) || isHovered ? 1 : 0.5
+                    cursor: 'crosshair',
+                    textShadow: isHovered ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none'
                   }}
                 >
                   {item.line || '\u00A0'}
