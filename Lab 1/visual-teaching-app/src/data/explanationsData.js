@@ -24,40 +24,47 @@ export const lexerExplanations = {
       title: "Counting Lines",
       text: "Whenever the lexer sees \\n, it increments the line_num variable so we can print accurate error messages later."
     },
-    "lex-keyword": {
-      badge: 'Keywords',
-      title: "Keyword Rule",
-      text: "When the exact keyword is found, we log it and return the specific token code. Important: Keyword rules must be placed BEFORE the identifier rule, otherwise 'if' would be wrongly matched as a variable name!"
-    },
-    "lex-float": {
-      badge: 'Teacher asks: "Explain this regex"',
-      title: "floatnum pattern",
-      text: "Matches 3 forms: 3.14 (digits-dot-digits), .5 (dot-digits), and 5E10 (digits with exponent). The [Ee] allows scientific notation, and [+-]? makes the exponent sign optional."
-    },
+    "lex-keyword-if": { badge: "Control Flow", title: "Keyword: if", text: "Matches the 'if' keyword. Returns the IF token. Must be defined before the general {id} rule!" },
+    "lex-keyword-else": { badge: "Control Flow", title: "Keyword: else", text: "Matches the 'else' keyword. Returns the ELSE token." },
+    "lex-keyword-for": { badge: "Loop", title: "Keyword: for", text: "Matches the 'for' keyword. Returns the FOR token." },
+    "lex-keyword-while": { badge: "Loop", title: "Keyword: while", text: "Matches the 'while' keyword. Returns the WHILE token." },
+    "lex-keyword-do": { badge: "Loop", title: "Keyword: do", text: "Matches the 'do' keyword. Returns the DO token." },
+    "lex-keyword-break": { badge: "Control Flow", title: "Keyword: break", text: "Matches 'break'. Returns the BREAK token." },
+    "lex-keyword-type": { badge: "Data Type", title: "Keyword: int/float/char", text: "Matches type declarations. Since they all act identically in the grammar (as a type specifier), we can return the same general TYPE token or individual tokens like INT, FLOAT, CHAR." },
+    "lex-keyword-return": { badge: "Function", title: "Keyword: return", text: "Matches 'return'. Returns the RETURN token." },
+    "lex-keyword-println": { badge: "Built-in", title: "Keyword: println", text: "Matches the 'println' function. Returns the PRINTLN token." },
+    "lex-addop": { badge: "Math", title: "Addition/Subtraction", text: "Matches + or -. Returns ADDOP token. Sets yylval to store the exact string (+ or -)." },
+    "lex-mulop": { badge: "Math", title: "Multiplication/Division", text: "Matches *, /, or %. Returns MULOP token." },
+    "lex-relop": { badge: "Comparison", title: "Relational Operator", text: "Matches <=, >=, <, >, ==, !=. Returns RELOP token." },
+    "lex-assignop": { badge: "Assignment", title: "Assignment Operator", text: "Matches =. Returns ASSIGNOP token." },
+    "lex-logicop": { badge: "Logic", title: "Logical Operator", text: "Matches && or ||. Returns LOGICOP token." },
+    "lex-not": { badge: "Logic", title: "Logical NOT", text: "Matches !. Returns NOT token." },
+    "lex-lparen": { badge: "Structure", title: "Left Parenthesis", text: "Matches (. Returns LPAREN." },
+    "lex-rparen": { badge: "Structure", title: "Right Parenthesis", text: "Matches ). Returns RPAREN." },
+    "lex-lcurl": { badge: "Structure", title: "Left Curly Brace", text: "Matches {. Returns LCURL." },
+    "lex-rcurl": { badge: "Structure", title: "Right Curly Brace", text: "Matches }. Returns RCURL." },
+    "lex-lthird": { badge: "Structure", title: "Left Bracket", text: "Matches [. Returns LTHIRD for arrays." },
+    "lex-rthird": { badge: "Structure", title: "Right Bracket", text: "Matches ]. Returns RTHIRD for arrays." },
+    "lex-semicolon": { badge: "Structure", title: "Semicolon", text: "Matches ;. Returns SEMICOLON to end statements." },
+    "lex-comma": { badge: "Structure", title: "Comma", text: "Matches ,. Returns COMMA to separate list items." },
     "lex-id": {
-      badge: 'Teacher asks: "What is yytext?"',
+      badge: 'Variables/Functions',
       title: "Identifier Rule",
       text: "yytext holds the actual matched text (e.g., 'myVar'). We cast it to a string and store it in a new symbol_info object. We assign this to yylval so the parser can access the variable name later."
     },
-    "lex-operator": {
-      badge: 'Longest Match Rule',
-      title: "Operators",
-      text: "Notice that ++ must be defined before +. Flex uses longest match first, but placing it first ensures ++ is safely treated as a single token."
+    "lex-integer": { badge: "Data", title: "Integer Constant", text: "Matches sequence of digits. Returns CONST_INT. Stores the string value in yylval." },
+    "lex-floatnum": {
+      badge: 'Regex Magic',
+      title: "Float Pattern",
+      text: "Matches forms like 3.14, .5, and 5E10. Returns CONST_FLOAT."
     },
-    "lex-relop": {
-      badge: 'Relational Operators',
-      title: "RELOP",
-      text: "Matches <=, >=, <, >, ==. We group them under one token RELOP because they all do the same kind of job in our grammar rules."
-    },
-    "lex-punctuation": {
-      badge: 'Punctuation',
-      title: "Symbols",
-      text: "Matches simple structural symbols like {, }, (, ), ;, and ,. The lexer just passes these straight to the parser as single-character tokens or specific named tokens."
-    },
+    "lex-character": { badge: "Data", title: "Character Constant", text: "Matches 'a' or '\\n'. Returns CONST_CHAR." },
+    "lex-comment": { badge: "Ignored", title: "Comments", text: "Matches // or /* */. We usually just ignore them or count newlines inside them, but we DO NOT return a token to the parser!" },
+    "lex-string": { badge: "Data", title: "String Literal", text: "Matches text enclosed in double quotes. Returns STRING." },
     "lex-default": {
       badge: 'Boilerplate',
       title: "Standard Code",
-      text: "This is standard C++ or Flex boilerplate code (like variable declarations, log formatting, or basic includes). It handles the setup so the important rules can do their job."
+      text: "This is standard C++ or Flex boilerplate code. It handles the setup so the important rules can do their job."
     }
   };
   
@@ -65,54 +72,44 @@ export const lexerExplanations = {
     "parse-default": {
       badge: 'Grammar Rule',
       title: "Standard Parsing Rule",
-      text: "This is a standard grammar rule or boilerplate setup code. In a rule like `A : B C`, it means 'A is made of B followed by C'. The code in {} tells the parser what to do when it matches this rule."
+      text: "This is a standard grammar rule. In a rule like `A : B C`, it means 'A is made of B followed by C'. The code in {} tells the parser what to do when it matches this rule."
     },
+    "parse-start": { badge: "Root", title: "start", text: "The highest level rule. A program always begins here." },
+    "parse-program": { badge: "Structure", title: "program", text: "A program is made of one or more 'units'. A unit can be a function or a variable declaration. This rule uses left-recursion to allow infinite units." },
+    "parse-unit": { badge: "Structure", title: "unit", text: "A unit is either a variable declaration (var_declaration) or a function (func_declaration / func_definition)." },
+    "parse-func_declaration": { badge: "Function", title: "func_declaration", text: "Matches a function signature without a body, e.g. `int main();`" },
+    "parse-func_definition": { badge: "Function", title: "func_definition", text: "Matches a complete function with a body, e.g. `int main() { ... }`. It expects a type, ID, parameters, and a compound statement." },
+    "parse-parameter_list": { badge: "Function", title: "parameter_list", text: "Matches the list of arguments passed into a function, handling comma separation." },
+    "parse-compound_statement": { badge: "Structure", title: "compound_statement", text: "Matches everything inside `{ }`. Usually contains local variable declarations followed by executable statements." },
+    "parse-var_declaration": { badge: "Variable", title: "var_declaration", text: "Matches `int x;` or `float y, z;`. Requires a type_specifier, a declaration_list, and a SEMICOLON." },
+    "parse-type_specifier": { badge: "Type", title: "type_specifier", text: "Matches data types like INT, FLOAT, VOID." },
+    "parse-declaration_list": { badge: "Variable", title: "declaration_list", text: "Matches comma-separated variables being declared, e.g., `a, b, c[10]`." },
+    "parse-statements": { badge: "Execution", title: "statements", text: "A left-recursive rule to allow an infinite list of sequential statements inside a block." },
+    "parse-statement-if": { badge: "Control Flow", title: "if statement", text: "Matches `if (condition) statement`. This rule uses %prec LOWER_THAN_ELSE to fix the dangling-else problem." },
+    "parse-statement-for": { badge: "Loop", title: "for statement", text: "Matches a for-loop: `for(expr1; expr2; expr3) statement`." },
+    "parse-statement-while": { badge: "Loop", title: "while statement", text: "Matches a while-loop: `while(condition) statement`." },
+    "parse-statement-println": { badge: "Output", title: "println statement", text: "Matches `println(id);`. Used for outputting variable values." },
+    "parse-statement-return": { badge: "Function", title: "return statement", text: "Matches `return expr;`. Exits the function and yields the expression value." },
+    "parse-statement": { badge: "Execution", title: "statement", text: "A generic statement. Could be an expression statement, compound statement, loop, or condition." },
+    "parse-expression_statement": { badge: "Execution", title: "expression_statement", text: "Matches an expression followed by a semicolon, like `x = 5;` or just `;`." },
+    "parse-variable": { badge: "Data", title: "variable", text: "Matches an identifier (ID) or an array access (ID [ expression ]). Looks up the variable in the Symbol Table." },
+    "parse-expression": { badge: "Math/Logic", title: "expression", text: "The highest level of mathematical/logical operations. Handles assignment: `variable = logic_expression`." },
+    "parse-logic_expression": { badge: "Logic", title: "logic_expression", text: "Handles boolean logic: && (AND) and || (OR). It chains rel_expressions." },
+    "parse-rel_expression": { badge: "Comparison", title: "rel_expression", text: "Handles comparisons: <=, >=, ==, !=, <, >. Combines two simple_expressions." },
+    "parse-simple_expression": { badge: "Math", title: "simple_expression", text: "Handles addition and subtraction (+, -). Notice how this is HIGHER in the AST than term (multiplication), so term gets evaluated FIRST in a bottom-up parser!" },
+    "parse-term": { badge: "Math", title: "term", text: "Handles multiplication, division, and modulo (*, /, %). Higher precedence than addition." },
+    "parse-unary_expression": { badge: "Math/Logic", title: "unary_expression", text: "Handles unary operators like `+x`, `-x`, `!x`." },
+    "parse-factor": { badge: "Base Unit", title: "factor", text: "The smallest unit of math: a variable, a constant number, a function call, or an expression inside parentheses `( expr )`." },
+    "parse-argument_list": { badge: "Function", title: "argument_list", text: "A left-recursive rule to handle comma-separated arguments during a function CALL." },
+    "parse-arguments": { badge: "Function", title: "arguments", text: "The arguments passed into a function call. Can be empty." },
+    
+    "parse-token": { badge: 'Defining Tokens', title: "%token", text: "Tells Yacc to generate numeric constants (like #define IF 258) and put them in y.tab.h for the lexer to use." },
+    "parse-type": { badge: 'Types', title: "%type", text: "Defines the return type (from the %union) that each non-terminal will return." },
+    "parse-precedence": { badge: 'VIVA HOT TOPIC!', title: "Precedence Rules", text: "Resolves ambiguity. Tokens listed later have HIGHER precedence. %nonassoc means it cannot associate with itself." },
+    
     "parse-yyerror": {
       badge: 'Teacher asks: "What happens on error?"',
       title: "yyerror()",
-      text: "This is called automatically by Yacc when it encounters a syntax error (tokens that don't match any rule). It prints the line number and the error message to the log."
-    },
-    "parse-nonassoc": {
-      badge: 'VIVA HOT TOPIC!',
-      title: "The Dangling-Else Fix",
-      text: "These two lines solve the dangling-else shift/reduce conflict. Yacc gives higher precedence to rules defined LATER. So ELSE has higher precedence than LOWER_THAN_ELSE."
-    },
-    "parse-token": {
-      badge: 'Defining Tokens',
-      title: "%token",
-      text: "This tells Yacc to generate numeric constants (like #define IF 258) and put them in y.tab.h for the lexer to use."
-    },
-    "parse-program": {
-      badge: 'Teacher asks: "Explain $1 and $$"',
-      title: "Recursive Rules & Values",
-      text: "This rule is left-recursive. $$ represents the result of the rule (left side). $1 is the value of the first symbol on the right, $2 is the second. Since YYSTYPE is symbol_info*, we call getnameofsymbol() to get the text."
-    },
-    "parse-if": {
-      badge: 'Applying the Fix',
-      title: "%prec LOWER_THAN_ELSE",
-      text: "This applies the low precedence to the if-without-else rule. When Yacc sees an ELSE token, it compares the low precedence of the current rule with the high precedence of the ELSE token. It chooses to SHIFT the ELSE token (attaching it to the nearest if), which is correct in C."
-    },
-    "parse-math": {
-      badge: 'Teacher asks: "How is 2+3*4 parsed?"',
-      title: "Operator Precedence",
-      text: "Through the grammar hierarchy! simple_expression handles +/-, while term handles */%. Since term is nested deeper, it is evaluated FIRST in bottom-up parsing. Multiplication happens before addition automatically!"
-    },
-    "parse-reduction": {
-      badge: 'Memory Management',
-      title: "new symbol_info",
-      text: "Every time we reduce a rule, we create a new symbol_info on the HEAP (using new). We combine the names of the child symbols (like $1 + $2) to build up the final program text. This is why it's a bottom-up parser!"
-    },
-    "parse-main": {
-      badge: 'Teacher asks: "What does yyparse do?"',
-      title: "The Entry Point",
-      text: "yyparse() starts the parsing engine. It repeatedly calls yylex() to get tokens and matches them against the grammar rules. yyin is set to the input file, and ios::trunc clears the old log file."
-    }
-  };
-
-  export const genericExplanations = {
-    "generic-default": {
-      badge: 'Helper File',
-      title: "Supporting Code",
-      text: "This is a supporting file for your compiler. Whether it's input code, header files, or bash scripts, these pieces glue everything together."
+      text: "Called automatically by Yacc when it encounters a syntax error (tokens that don't match any rule). It prints the line number and error message."
     }
   };

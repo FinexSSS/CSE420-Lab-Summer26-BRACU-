@@ -156,12 +156,12 @@ export const parserCode = [
   },
   {
     "line": "%nonassoc LOWER_THAN_ELSE",
-    "id": "parse-nonassoc",
+    "id": "parse-precedence",
     "highlight": true
   },
   {
     "line": "%nonassoc ELSE",
-    "id": "parse-nonassoc",
+    "id": "parse-precedence",
     "highlight": true
   },
   {
@@ -186,27 +186,27 @@ export const parserCode = [
   },
   {
     "line": "start : program",
-    "id": "parse-default",
+    "id": "parse-start",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-start",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" start : program \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-start",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-start",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-start",
     "highlight": true
   },
   {
@@ -221,7 +221,7 @@ export const parserCode = [
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
@@ -231,7 +231,7 @@ export const parserCode = [
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()+\"\\n\"+$2->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
@@ -241,32 +241,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"\\n\"+$2->getnameofsymbol(),\"program\");",
-    "id": "parse-reduction",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t| unit",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" program : unit \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
@@ -276,17 +276,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"program\");",
-    "id": "parse-reduction",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-program",
     "highlight": true
   },
   {
@@ -296,22 +296,22 @@ export const parserCode = [
   },
   {
     "line": "unit : variable_decl",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" unit : variable_decl \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
@@ -321,32 +321,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"unit\");",
-    "id": "parse-reduction",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t| func_definition",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" unit : func_definition \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
@@ -356,17 +356,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"unit\");",
-    "id": "parse-reduction",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-unit",
     "highlight": true
   },
   {
@@ -376,22 +376,22 @@ export const parserCode = [
   },
   {
     "line": "func_definition : type_specifier ID LPAREN param_list RPAREN compound_statement",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" func_definition : type_specifier ID LPAREN param_list RPAREN compound_statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\" \"<<$2->getnameofsymbol()<<\"(\"<<$4->getnameofsymbol()<<\")\\n\"<<$6->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
@@ -401,32 +401,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\" \"+$2->getnameofsymbol()+\"(\"+$4->getnameofsymbol()+\")\\n\"+$6->getnameofsymbol(),\"func_def\");",
-    "id": "parse-reduction",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t| type_specifier ID LPAREN RPAREN compound_statement",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" func_definition : type_specifier ID LPAREN RPAREN compound_statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\" \"<<$2->getnameofsymbol()<<\"()\\n\"<<$5->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
@@ -436,17 +436,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\" \"+$2->getnameofsymbol()+\"()\\n\"+$5->getnameofsymbol(),\"func_def\");",
-    "id": "parse-reduction",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-func_definition",
     "highlight": true
   },
   {
@@ -606,22 +606,22 @@ export const parserCode = [
   },
   {
     "line": "compound_statement : LCURL statements RCURL",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" compound_statement : LCURL statements RCURL \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"{\\n\"+$2->getnameofsymbol()+\"\\n}\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
@@ -631,32 +631,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"{\\n\"+$2->getnameofsymbol()+\"\\n}\",\"compound_statement\");",
-    "id": "parse-reduction",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t| LCURL RCURL",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" compound_statement : LCURL RCURL \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"{\\n}\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
@@ -666,17 +666,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"{\\n}\",\"compound_statement\");",
-    "id": "parse-reduction",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-compound_statement",
     "highlight": true
   },
   {
@@ -731,22 +731,22 @@ export const parserCode = [
   },
   {
     "line": "type_specifier : INT",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" type_specifier : INT \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"int\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
@@ -756,32 +756,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"int\",\"type_specifier\");",
-    "id": "parse-reduction",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t| FLOAT",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" type_specifier : FLOAT \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"float\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
@@ -791,32 +791,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"float\",\"type_specifier\");",
-    "id": "parse-reduction",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t| VOID",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" type_specifier : VOID \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"void\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
@@ -826,32 +826,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"void\",\"type_specifier\");",
-    "id": "parse-reduction",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t| CHAR",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" type_specifier : CHAR \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"char\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
@@ -861,17 +861,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"char\",\"type_specifier\");",
-    "id": "parse-reduction",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-type_specifier",
     "highlight": true
   },
   {
@@ -881,22 +881,22 @@ export const parserCode = [
   },
   {
     "line": "declaration_list : declaration_list COMMA ID",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" declaration_list : declaration_list COMMA ID \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()+\",\"+$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
@@ -906,32 +906,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\",\"+$3->getnameofsymbol(),\"declaration_list\");",
-    "id": "parse-reduction",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t| declaration_list COMMA ID LTHIRD CONST_INT RTHIRD",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" declaration_list : declaration_list COMMA ID LTHIRD CONST_INT RTHIRD \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()+\",\"+$3->getnameofsymbol()+\"[\"+$5->getnameofsymbol()+\"]\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
@@ -941,32 +941,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\",\"+$3->getnameofsymbol()+\"[\"+$5->getnameofsymbol()+\"]\",\"declaration_list\");",
-    "id": "parse-reduction",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t| ID",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" declaration_list : ID \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
@@ -976,32 +976,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"declaration_list\");",
-    "id": "parse-reduction",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t| ID LTHIRD CONST_INT RTHIRD",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" declaration_list : ID LTHIRD CONST_INT RTHIRD \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()+\"[\"+$3->getnameofsymbol()+\"]\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
@@ -1011,17 +1011,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"[\"+$3->getnameofsymbol()+\"]\",\"declaration_list\");",
-    "id": "parse-reduction",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-declaration_list",
     "highlight": true
   },
   {
@@ -1031,22 +1031,22 @@ export const parserCode = [
   },
   {
     "line": "statements : statement",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statements : statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
@@ -1056,32 +1056,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"statements\");",
-    "id": "parse-reduction",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t| statements statement",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statements : statements statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()+\"\\n\"+$2->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
@@ -1091,17 +1091,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"\\n\"+$2->getnameofsymbol(),\"statements\");",
-    "id": "parse-reduction",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-statements",
     "highlight": true
   },
   {
@@ -1111,22 +1111,22 @@ export const parserCode = [
   },
   {
     "line": "statement : variable_decl",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : variable_decl \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1136,32 +1136,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| expression_statement",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : expression_statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1171,32 +1171,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| compound_statement",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : compound_statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1206,32 +1206,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| FOR LPAREN expression_statement expression_statement expression RPAREN statement",
-    "id": "parse-default",
+    "id": "parse-statement-for",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : FOR LPAREN expression_statement expression_statement expression RPAREN statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement-for",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"for(\"<<$3->getnameofsymbol()<<$4->getnameofsymbol()<<$5->getnameofsymbol()<<\")\\n\"<<$7->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1241,32 +1241,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"for(\"+$3->getnameofsymbol()+$4->getnameofsymbol()+$5->getnameofsymbol()+\")\\n\"+$7->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| IF LPAREN expression RPAREN statement %prec LOWER_THAN_ELSE",
-    "id": "parse-if",
+    "id": "parse-statement-if",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : IF LPAREN expression RPAREN statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement-if",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"if(\"<<$3->getnameofsymbol()<<\")\\n\"<<$5->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1276,32 +1276,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"if(\"+$3->getnameofsymbol()+\")\\n\"+$5->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| IF LPAREN expression RPAREN statement ELSE statement",
-    "id": "parse-default",
+    "id": "parse-statement-if",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : IF LPAREN expression RPAREN statement ELSE statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement-if",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"if(\"<<$3->getnameofsymbol()<<\")\\n\"<<$5->getnameofsymbol()<<\"\\nelse\\n\"<<$7->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1311,32 +1311,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"if(\"+$3->getnameofsymbol()+\")\\n\"+$5->getnameofsymbol()+\"\\nelse\\n\"+$7->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| WHILE LPAREN expression RPAREN statement",
-    "id": "parse-default",
+    "id": "parse-statement-while",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : WHILE LPAREN expression RPAREN statement \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement-while",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"while(\"<<$3->getnameofsymbol()<<\")\\n\"<<$5->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1346,32 +1346,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"while(\"+$3->getnameofsymbol()+\")\\n\"+$5->getnameofsymbol(),\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| PRINTLN LPAREN ID RPAREN SEMICOLON",
-    "id": "parse-default",
+    "id": "parse-statement-println",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : PRINTLN LPAREN ID RPAREN SEMICOLON \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement-println",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"printf(\"<<$3->getnameofsymbol()<<\");\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1381,32 +1381,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"printf(\"+$3->getnameofsymbol()+\");\",\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t| RETURN expression SEMICOLON",
-    "id": "parse-default",
+    "id": "parse-statement-return",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" statement : RETURN expression SEMICOLON \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement-return",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"return \"<<$2->getnameofsymbol()<<\";\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1416,17 +1416,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"return \"+$2->getnameofsymbol()+\";\",\"statement\");",
-    "id": "parse-reduction",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-statement",
     "highlight": true
   },
   {
@@ -1436,22 +1436,22 @@ export const parserCode = [
   },
   {
     "line": "expression_statement : SEMICOLON",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" expression_statement : SEMICOLON \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\";\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
@@ -1461,32 +1461,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\";\",\"expression_statement\");",
-    "id": "parse-reduction",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t| expression SEMICOLON",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" expression_statement : expression SEMICOLON \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\";\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
@@ -1496,17 +1496,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\";\",\"expression_statement\");",
-    "id": "parse-reduction",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-expression_statement",
     "highlight": true
   },
   {
@@ -1516,22 +1516,22 @@ export const parserCode = [
   },
   {
     "line": "variable : ID",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" variable : ID \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
@@ -1541,32 +1541,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"variable\");",
-    "id": "parse-reduction",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t| ID LTHIRD expression RTHIRD",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" variable : ID LTHIRD expression RTHIRD \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\"[\"<<$3->getnameofsymbol()<<\"]\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
@@ -1576,17 +1576,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"[\"+$3->getnameofsymbol()+\"]\",\"variable\");",
-    "id": "parse-reduction",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-variable",
     "highlight": true
   },
   {
@@ -1596,22 +1596,22 @@ export const parserCode = [
   },
   {
     "line": "expression : logic_expression",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" expression : logic_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
@@ -1621,32 +1621,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"expression\");",
-    "id": "parse-reduction",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t| variable ASSIGNOP logic_expression",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" expression : variable ASSIGNOP logic_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\"=\"<<$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
@@ -1656,17 +1656,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"=\"+$3->getnameofsymbol(),\"expression\");",
-    "id": "parse-reduction",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-expression",
     "highlight": true
   },
   {
@@ -1676,22 +1676,22 @@ export const parserCode = [
   },
   {
     "line": "logic_expression : rel_expression",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" logic_expression : rel_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
@@ -1701,32 +1701,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"logic_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t| rel_expression LOGICOP rel_expression",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" logic_expression : rel_expression LOGICOP rel_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<$2->getnameofsymbol()<<$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
@@ -1736,17 +1736,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+$2->getnameofsymbol()+$3->getnameofsymbol(),\"logic_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-logic_expression",
     "highlight": true
   },
   {
@@ -1756,22 +1756,22 @@ export const parserCode = [
   },
   {
     "line": "rel_expression : simple_expression",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" rel_expression : simple_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
@@ -1781,32 +1781,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"rel_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t| simple_expression RELOP simple_expression",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" rel_expression : simple_expression RELOP simple_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<$2->getnameofsymbol()<<$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
@@ -1816,17 +1816,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+$2->getnameofsymbol()+$3->getnameofsymbol(),\"rel_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-rel_expression",
     "highlight": true
   },
   {
@@ -1836,22 +1836,22 @@ export const parserCode = [
   },
   {
     "line": "simple_expression : term",
-    "id": "parse-math",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" simple_expression : term \"<<endl<<endl;",
-    "id": "parse-math",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
@@ -1861,32 +1861,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"simple_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t| simple_expression ADDOP term",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" simple_expression : simple_expression ADDOP term \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<$2->getnameofsymbol()<<$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
@@ -1896,17 +1896,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+$2->getnameofsymbol()+$3->getnameofsymbol(),\"simple_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-simple_expression",
     "highlight": true
   },
   {
@@ -1916,22 +1916,22 @@ export const parserCode = [
   },
   {
     "line": "term : unary_expression",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" term : unary_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
@@ -1941,32 +1941,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"term\");",
-    "id": "parse-reduction",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t| term MULOP unary_expression",
-    "id": "parse-math",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" term : term MULOP unary_expression \"<<endl<<endl;",
-    "id": "parse-math",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<$2->getnameofsymbol()<<$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
@@ -1976,17 +1976,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+$2->getnameofsymbol()+$3->getnameofsymbol(),\"term\");",
-    "id": "parse-reduction",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-term",
     "highlight": true
   },
   {
@@ -1996,22 +1996,22 @@ export const parserCode = [
   },
   {
     "line": "unary_expression : ADDOP unary_expression",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" unary_expression : ADDOP unary_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<$2->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
@@ -2021,32 +2021,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+$2->getnameofsymbol(),\"unary_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t| NOT unary_expression",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" unary_expression : NOT unary_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"!\"<<$2->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
@@ -2056,32 +2056,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"!\"+$2->getnameofsymbol(),\"unary_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t| factor_info",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" unary_expression : factor \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
@@ -2091,17 +2091,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"unary_expression\");",
-    "id": "parse-reduction",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-unary_expression",
     "highlight": true
   },
   {
@@ -2156,22 +2156,22 @@ export const parserCode = [
   },
   {
     "line": "factor : variable",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : variable \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2181,32 +2181,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t| ID LPAREN argument_list RPAREN",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : ID LPAREN argument_list RPAREN \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\"(\"<<$3->getnameofsymbol()<<\")\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2216,32 +2216,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"(\"+$3->getnameofsymbol()+\")\",\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t| LPAREN expression RPAREN",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : LPAREN expression RPAREN \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"(\"<<$2->getnameofsymbol()<<\")\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2251,32 +2251,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"(\"+$2->getnameofsymbol()+\")\",\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t| CONST_INT",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : CONST_INT \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2286,32 +2286,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t| CONST_FLOAT",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : CONST_FLOAT \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2321,32 +2321,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t| variable INCOP",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : variable INCOP \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\"++\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2356,32 +2356,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"++\",\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t| variable DECOP",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" factor : variable DECOP \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\"--\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2391,17 +2391,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\"--\",\"factor\");",
-    "id": "parse-reduction",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-factor",
     "highlight": true
   },
   {
@@ -2411,22 +2411,22 @@ export const parserCode = [
   },
   {
     "line": "argument_list : arguments",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" argument_list : arguments \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
@@ -2436,32 +2436,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"argument_list\");",
-    "id": "parse-reduction",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t|",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" argument_list : \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"\"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
@@ -2471,17 +2471,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info(\"\",\"argument_list\");",
-    "id": "parse-reduction",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-argument_list",
     "highlight": true
   },
   {
@@ -2491,22 +2491,22 @@ export const parserCode = [
   },
   {
     "line": "arguments : arguments COMMA logic_expression",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" arguments : arguments COMMA logic_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<\",\"<<$3->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2516,32 +2516,32 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol()+\",\"+$3->getnameofsymbol(),\"arguments\");",
-    "id": "parse-reduction",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t| logic_expression",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<\"At line no: \"<<line_num<<\" arguments : logic_expression \"<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\toutlog<<$1->getnameofsymbol()<<endl<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2551,17 +2551,17 @@ export const parserCode = [
   },
   {
     "line": "\t\t$$ = new symbol_info($1->getnameofsymbol(),\"arguments\");",
-    "id": "parse-reduction",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2571,7 +2571,7 @@ export const parserCode = [
   },
   {
     "line": "%%",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2586,47 +2586,47 @@ export const parserCode = [
   },
   {
     "line": "int main(int c, char *v[])",
-    "id": "parse-main",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "{",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\tif(c != 2) ",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\tcout<<\"Please provide input file name\"<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\treturn 0;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\tyyin = fopen(v[1], \"r\");",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\toutlog.open(\"22101619_log.txt\", ios::trunc);",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2636,27 +2636,27 @@ export const parserCode = [
   },
   {
     "line": "\tif(yyin == NULL)",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t{",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\tcout<<\"Couldn't open file\"<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t\treturn 0;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "\t}",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2666,7 +2666,7 @@ export const parserCode = [
   },
   {
     "line": "\tyyparse();",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2676,7 +2676,7 @@ export const parserCode = [
   },
   {
     "line": "\toutlog<<endl<<\"Total lines: \"<<line_num<<endl;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2686,7 +2686,7 @@ export const parserCode = [
   },
   {
     "line": "\toutlog.close();",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2696,7 +2696,7 @@ export const parserCode = [
   },
   {
     "line": "\tfclose(yyin);",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
@@ -2706,12 +2706,12 @@ export const parserCode = [
   },
   {
     "line": "\treturn 0;",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {
     "line": "}",
-    "id": "parse-default",
+    "id": "parse-arguments",
     "highlight": true
   },
   {

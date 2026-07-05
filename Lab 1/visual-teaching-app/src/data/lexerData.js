@@ -6,7 +6,7 @@ export const lexerCode = [
   },
   {
     "line": "%option noyywrap",
-    "id": "lex-option",
+    "id": "lex-option-noyywrap",
     "highlight": true
   },
   {
@@ -261,7 +261,7 @@ export const lexerCode = [
   },
   {
     "line": "\"if\"        { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-if",
     "highlight": true
   },
   {
@@ -286,7 +286,7 @@ export const lexerCode = [
   },
   {
     "line": "\"else\"      { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-else",
     "highlight": true
   },
   {
@@ -311,7 +311,7 @@ export const lexerCode = [
   },
   {
     "line": "\"for\"       { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-for",
     "highlight": true
   },
   {
@@ -336,7 +336,7 @@ export const lexerCode = [
   },
   {
     "line": "\"while\"     { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-while",
     "highlight": true
   },
   {
@@ -361,7 +361,7 @@ export const lexerCode = [
   },
   {
     "line": "\"int\"       { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-type",
     "highlight": true
   },
   {
@@ -386,7 +386,7 @@ export const lexerCode = [
   },
   {
     "line": "\"float\"     { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-type",
     "highlight": true
   },
   {
@@ -436,7 +436,7 @@ export const lexerCode = [
   },
   {
     "line": "\"char\"      { ",
-    "id": "lex-default",
+    "id": "lex-keyword-type",
     "highlight": true
   },
   {
@@ -486,7 +486,7 @@ export const lexerCode = [
   },
   {
     "line": "\"return\"    { ",
-    "id": "lex-keyword",
+    "id": "lex-keyword-return",
     "highlight": true
   },
   {
@@ -561,7 +561,7 @@ export const lexerCode = [
   },
   {
     "line": "\"do\"        { ",
-    "id": "lex-default",
+    "id": "lex-keyword-do",
     "highlight": true
   },
   {
@@ -586,7 +586,7 @@ export const lexerCode = [
   },
   {
     "line": "\"break\"     { ",
-    "id": "lex-default",
+    "id": "lex-keyword-break",
     "highlight": true
   },
   {
@@ -751,7 +751,7 @@ export const lexerCode = [
   },
   {
     "line": "{floatnum}  {",
-    "id": "lex-float",
+    "id": "lex-floatnum",
     "highlight": true
   },
   {
@@ -791,7 +791,7 @@ export const lexerCode = [
   },
   {
     "line": "{integer}   {",
-    "id": "lex-default",
+    "id": "lex-integer",
     "highlight": true
   },
   {
@@ -1011,7 +1011,7 @@ export const lexerCode = [
   },
   {
     "line": "\"=\"         {",
-    "id": "lex-default",
+    "id": "lex-assignop",
     "highlight": true
   },
   {
@@ -1081,7 +1081,7 @@ export const lexerCode = [
   },
   {
     "line": "\"!\"         {",
-    "id": "lex-default",
+    "id": "lex-not",
     "highlight": true
   },
   {
@@ -1111,7 +1111,7 @@ export const lexerCode = [
   },
   {
     "line": "\"(\"         {",
-    "id": "lex-punctuation",
+    "id": "lex-lparen",
     "highlight": true
   },
   {
@@ -1141,7 +1141,7 @@ export const lexerCode = [
   },
   {
     "line": "\")\"         {",
-    "id": "lex-punctuation",
+    "id": "lex-rparen",
     "highlight": true
   },
   {
@@ -1171,7 +1171,7 @@ export const lexerCode = [
   },
   {
     "line": "\"{\"         {",
-    "id": "lex-punctuation",
+    "id": "lex-lcurl",
     "highlight": true
   },
   {
@@ -1201,7 +1201,7 @@ export const lexerCode = [
   },
   {
     "line": "\"}\"         {",
-    "id": "lex-punctuation",
+    "id": "lex-rcurl",
     "highlight": true
   },
   {
@@ -1231,7 +1231,7 @@ export const lexerCode = [
   },
   {
     "line": "\"[\"         {",
-    "id": "lex-default",
+    "id": "lex-lthird",
     "highlight": true
   },
   {
@@ -1261,7 +1261,7 @@ export const lexerCode = [
   },
   {
     "line": "\"]\"         {",
-    "id": "lex-default",
+    "id": "lex-rthird",
     "highlight": true
   },
   {
@@ -1291,7 +1291,7 @@ export const lexerCode = [
   },
   {
     "line": "\",\"        { ",
-    "id": "lex-punctuation",
+    "id": "lex-comma",
     "highlight": true
   },
   {
@@ -1346,7 +1346,7 @@ export const lexerCode = [
   },
   {
     "line": "\";\"         {",
-    "id": "lex-punctuation",
+    "id": "lex-semicolon",
     "highlight": true
   },
   {
