@@ -10,7 +10,7 @@ export const scriptCode = [
     "highlight": false
   },
   {
-    "line": "yacc -d -y --debug --verbose 22101619.y",
+    "line": "yacc -d -y --debug --verbose parser.y",
     "id": "generic-default",
     "highlight": true
   },
@@ -30,7 +30,7 @@ export const scriptCode = [
     "highlight": true
   },
   {
-    "line": "flex 22101619.l",
+    "line": "flex lexer.l",
     "id": "generic-default",
     "highlight": true
   },

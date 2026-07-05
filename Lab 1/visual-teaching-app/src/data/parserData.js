@@ -2625,7 +2625,7 @@ export const parserCode = [
     "highlight": true
   },
   {
-    "line": "\toutlog.open(\"22101619_log.txt\", ios::trunc);",
+    "line": "\toutlog.open(\"log.txt\", ios::trunc);",
     "id": "parse-arguments",
     "highlight": true
   },
