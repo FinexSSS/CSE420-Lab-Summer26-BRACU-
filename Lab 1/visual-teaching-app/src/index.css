@@ -143,12 +143,14 @@ body {
 .code-panel {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 20px;
   background-color: #282c34;
   font-family: 'Consolas', 'Monaco', monospace;
   font-size: 14px;
   line-height: 1.6;
-  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .code-line {
@@ -164,7 +166,7 @@ body {
   border-left: 2px solid var(--accent);
   border-radius: 4px;
   transition: all 0.2s;
-  display: inline-block;
+  display: block;
   width: 100%;
 }
 
