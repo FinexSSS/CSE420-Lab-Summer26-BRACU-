@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Network } from 'lucide-react';
+import { Network, ChevronUp, ChevronDown } from 'lucide-react';
 import { inputCode } from '../data/inputData';
 import { astData } from '../data/astData';
 
 const AstNode = ({ node, hoverLines, setHoverLines }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const hasChildren = node.children && node.children.length > 0;
   
   // Check if any of this node's highlight lines are currently being hovered
@@ -86,13 +86,14 @@ const AstNode = ({ node, hoverLines, setHoverLines }) => {
 export default function AstTreeTab() {
   const [hoverLines, setHoverLines] = useState([]);
   const [lockedLines, setLockedLines] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  // Combine hovered and locked lines for highlighting
+  // Combine locked and hovered lines for highlighting
   const activeLines = [...new Set([...hoverLines, ...lockedLines])];
 
   return (
     <div className="tab-pane active" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-      <div className="header" style={{ flexShrink: 0 }}>
+      <div className="header">
         <h1>Interactive Syntax Tree</h1>
         <p>Click nodes to expand the AST. Hover over or <strong>click code lines</strong> to highlight and lock their corresponding nodes in the tree!</p>
       </div>
@@ -150,7 +151,26 @@ export default function AstTreeTab() {
         </div>
         
         {/* Code Panel */}
-        <div className="mobile-panel-bottom" style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+        <div className={`mobile-panel-bottom ${isExpanded ? 'expanded' : ''}`} style={{ flex: 1, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+          
+          {/* Mobile swipe drawer handle */}
+          <div 
+            style={{ display: 'none' }} 
+            className="mobile-drawer-handle" 
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <div style={{ width: '40px', height: '4px', background: 'var(--border)', borderRadius: '4px', margin: '0 auto 10px' }} />
+            <div style={{ display: 'flex', justifyContent: 'center', color: 'var(--text-muted)' }}>
+              {isExpanded ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+            </div>
+          </div>
+          
+          <style dangerouslySetInnerHTML={{__html: `
+            @media (max-width: 900px) {
+              .mobile-drawer-handle { display: block !important; cursor: pointer; padding-bottom: 10px; }
+            }
+          `}} />
+
           <h2 style={{ color: '#f59e0b', marginBottom: '20px' }}>Raw Source Code</h2>
           <div style={{ flex: 1, background: '#1e293b', padding: '20px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '1.2rem', lineHeight: '1.8', overflowY: 'auto' }}>
             {inputCode.map((item, index) => {

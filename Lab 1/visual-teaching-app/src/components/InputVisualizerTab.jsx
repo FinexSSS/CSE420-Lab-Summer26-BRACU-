@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Cpu, Database, Eye } from 'lucide-react';
+import { Terminal, Cpu, Database, Eye, ChevronUp, ChevronDown } from 'lucide-react';
 import { inputCode } from '../data/inputData';
 
 // --- Heuristic Engine ---
@@ -163,7 +163,25 @@ export default function InputVisualizerTab() {
         </div>
 
         {/* Dynamic Visualizer Panel */}
-        <div className="mobile-panel-bottom" style={{ flex: 1.2, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', overflowY: 'auto' }}>
+        <div className={`mobile-panel-bottom ${isExpanded ? 'expanded' : ''}`} style={{ flex: 1.2, background: 'var(--panel-bg)', borderRadius: '12px', padding: '20px', border: '1px solid var(--border)', overflowY: 'auto' }}>
+          {/* Mobile swipe drawer handle */}
+          <div 
+            style={{ display: 'none' }} 
+            className="mobile-drawer-handle" 
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <div style={{ width: '40px', height: '4px', background: 'var(--border)', borderRadius: '4px', margin: '0 auto 10px' }} />
+            <div style={{ display: 'flex', justifyContent: 'center', color: 'var(--text-muted)' }}>
+              {isExpanded ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+            </div>
+          </div>
+          
+          <style dangerouslySetInnerHTML={{__html: `
+            @media (max-width: 900px) {
+              .mobile-drawer-handle { display: block !important; cursor: pointer; padding-bottom: 10px; }
+            }
+          `}} />
+
           <h2 style={{ color: '#3b82f6', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Eye size={24} /> Live Compiler Simulation
           </h2>
