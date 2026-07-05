@@ -106,6 +106,7 @@ function analyzeLine(line) {
 export default function InputVisualizerTab() {
   const [activeLine, setActiveLine] = useState(null);
   const [analysis, setAnalysis] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleLineClick = (lineStr, lineNum) => {
     if (activeLine === lineNum) {
